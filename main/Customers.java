@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customers {
@@ -7,7 +8,11 @@ public class Customers {
     private String Name;
     private String Surname;
     private int Age;
-    private List<TypeContact> Contacts;
+    private List<Contacts> Contacts = new ArrayList<Contacts>();
+
+    public List<main.Contacts> getContacts() {
+        return Contacts;
+    }
 
     public String getIdCustomer() {
         return IdCustomer;
@@ -25,9 +30,7 @@ public class Customers {
         return Age;
     }
 
-    public List<TypeContact> getContacts() {
-        return Contacts;
-    }
+
 
     public void setIdCustomer(String idCustomer) {
         IdCustomer = idCustomer;
@@ -45,7 +48,7 @@ public class Customers {
         Age = age;
     }
 
-    public void setContacts(List<TypeContact> contacts) {
+    public void setContacts(List<main.Contacts> contacts) {
         Contacts = contacts;
     }
 }

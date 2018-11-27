@@ -1,8 +1,16 @@
 package main;
 
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.StringReader;
 
 public class ReadFileXML extends ReadFile {
 
@@ -12,7 +20,7 @@ public class ReadFileXML extends ReadFile {
 
     private boolean removeHeadXML;
 
-    public void setHeadToRemoweXML(boolean removeHeadXML) {
+    public void setHeaderToRemoweXML(boolean removeHeadXML) {
         this.removeHeadXML = removeHeadXML;
     }
 
@@ -23,26 +31,39 @@ public class ReadFileXML extends ReadFile {
 
     @Override
     public void ReadAllObject() {
+        DefaultHandler handler = new ParserXml();
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+
         try {
+            SAXParser parser = factory.newSAXParser();
             bRead = new BufferedReader(new FileReader(fileName));
+            readLine(bRead);
             if (this.removeHeadXML) {
                 readLine(bRead);
             }
             do {
                 do {
+
                     xmlBodyOne += readLine(bRead);
-
                 } while (line.indexOf("/person") == -1);
-                System.out.println(xmlBodyOne);
-                xmlBodyOne = "";
+             //   System.out.println(xmlBodyOne);
+            //    System.out.println(xmlBodyOne.length());
+                /**
+                 * stop parsing after load last tag
+                 */
+                if(xmlBodyOne.indexOf("</persons>")!=0) {
+                    parser.parse(new InputSource(new StringReader(xmlBodyOne)), handler);
+                }
 
-            } while (line.indexOf("/persons") == -1);// </persons>
+                    xmlBodyOne = "";
 
-            line.trim();
+            } while (line.indexOf("/persons") == -1);
         } catch (IOException ex) {
             System.out.printf("can't read file");
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
         }
-
-
     }
 }

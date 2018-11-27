@@ -28,12 +28,12 @@ public class ReadXmlCsv {
         if (checkXml.checkXmlHead()) {
             System.out.println("To jest XML z naglowkiem");
             readFile = new ReadFileXML();
-            ((ReadFileXML) readFile).setHeadToRemoweXML(true);
+            ((ReadFileXML) readFile).setHeaderToRemoweXML(true);
             readFile.ReadAllObject();
         } else if (checkXml.checkXmlBody() ) {
             System.out.println("To jest XML bez naglowka");
             readFile = new ReadFileXML();
-            ((ReadFileXML) readFile).setHeadToRemoweXML(false);
+            ((ReadFileXML) readFile).setHeaderToRemoweXML(false);
             readFile.ReadAllObject();
         }else {
             System.out.println("To NIE jest XML");
