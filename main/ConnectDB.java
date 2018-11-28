@@ -13,5 +13,6 @@ abstract public class ConnectDB {
     int id;
     String query;
 
-    abstract void connecting();
+    abstract public void connecting();
+    abstract public void connecting(Customers customers);
 }

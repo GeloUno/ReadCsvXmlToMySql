@@ -2,62 +2,71 @@ package main;
 
 
 import java.sql.*;
+import java.util.List;
 
 public class InsertDB extends ConnectDB {
+    Customers customers;
+    Contacts contacts;
+    private List<Contacts> contactsList;
 
-       //ConnectDB driver name & database URL
-//    static final  String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    // fix problems witch time zone in local host
-    static final String DB_URL= "jdbc:mysql://localhost/customersDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-//    public void connecting(){}
-    public void connecting(){
+    //ConnectDB driver URL
+    static final String DB_URL = "jdbc:mysql://localhost/customersDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
+    @Override
+    public void connecting() {
+    }
+
+    @Override
+    public void connecting(Customers c) {
+        PreparedStatement preparedStmt;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Connecting ....");
-            connection = DriverManager.getConnection(DB_URL,USER,PASS);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
 
             System.out.println("Creating statement ...");
             statement = connection.createStatement();
-          //  Select query;
 
-            query =("SELECT MAX(id) FROM contacts");
+            query = ("SELECT MAX(id) FROM customers");
             ResultSet resultSet = statement.executeQuery(query);
-           // System.out.println(resultSet);
+            // System.out.println(resultSet);
             resultSet.next();
-            id =(resultSet.getInt("MAX(id)"))+1;
-//            while (resultSet.next()){
-//                System.out.print(" - ");
-//                System.out.print(resultSet.getInt("contact"));
-//                System.out.print(" - ");
-//                System.out.println(resultSet.getInt("type"));
-//            }
-            // the mysql insert statement
-             query = " insert into contacts (`id`, `id_customers`, `type`, `contact`)"
-                    + " values ("+id+", ?, ?, ?)";
-
-//           query = " insert into contacts (`id`, `id_customers`, `type`, `contact`)"
-//                    + " values (LAST_INSERT_ID(), ?, ?, ?)";
-
-            // create the mysql insert preparedstatement
-            PreparedStatement preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt (1, 5);
-            preparedStmt.setInt (2, 5);
-            //  preparedStmt.setInt   (3, 1);
-            preparedStmt.setInt(3, 114114114);
+            id = (resultSet.getInt("MAX(id)")) + 1;
+            System.out.println("MAX: " + id);
 
 
-            // execute the preparedstatement
+            query = " insert into customers (`id`, `name`, `surname`, `age`)"
+                    + " values (?, ?, ?, ?)";
+            preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setInt(1, id);
+            preparedStmt.setString(2, c.getName());
+            preparedStmt.setString(3, c.getSurname());
+            preparedStmt.setInt(4, c.getAge());
             preparedStmt.execute();
+
+            contactsList = c.getContacts();
+
+            for (Contacts l : contactsList) {
+
+                query = " insert into contacts (`id`, `id_customers`, `type`, `contact`)"
+                        + " values (" + null + " ,?, ?, ?)";
+
+                // create the mysql insert preparedstatement
+                preparedStmt = connection.prepareStatement(query);
+                preparedStmt.setInt(1, id);
+                preparedStmt.setInt(2, l.getTypeContact().getNumberContact());
+                preparedStmt.setString(3, l.getContact());
+
+                preparedStmt.execute();
+            }
 
             statement.close();
             connection.close();
 
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
-            System.out.println("Connnection DB Error");
+            System.out.println("Insert DB Error");
             e.printStackTrace();
         }
     }

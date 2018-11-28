@@ -9,8 +9,14 @@ public class CreateDB extends ConnectDB {
     // fix problems witch time zone in local host
     static final String DB_URL_CREATE_BD = "jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
+    @Override
+    public void connecting(Customers customers) {
+
+    }
+
+    @Override
     public void connecting() {
-              int resultSet;
+        int resultSet;
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,14 +34,14 @@ public class CreateDB extends ConnectDB {
             query = (" CREATE TABLE IF NOT EXISTS `customersDB`.`Customers` ( `id` INT NOT NULL AUTO_INCREMENT " +
                     ", `name` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL " +
                     ", `surname` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL " +
-                    ", `age` INT(2) NOT NULL " +
+                    ", `age` INT(2) NULL " +
                     ", PRIMARY KEY (`id`)) ENGINE = InnoDB");
             resultSet = statement.executeUpdate(query);
 
 
             query = (" CREATE TABLE IF NOT EXISTS `customersDB`.`contacts` ( `id` INT NOT NULL AUTO_INCREMENT " +
                     ", `id_customers` INT NOT NULL , `type` INT NULL " +
-                    ", `contact` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL " +
+                    ", `contact` VARCHAR(25) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL " +
                     ", PRIMARY KEY (`id`)) ENGINE = InnoDB;\n");
             resultSet = statement.executeUpdate(query);
 
