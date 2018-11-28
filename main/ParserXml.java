@@ -25,7 +25,7 @@ public class ParserXml extends DefaultHandler2 {
         super.startDocument();
         customers = new Customers();
         contactsList = new ArrayList<Contacts>();
-//        contacts = new Contacts();
+
     }
 
     @Override
@@ -77,18 +77,15 @@ public class ParserXml extends DefaultHandler2 {
         super.characters(ch,start,length);
         if (name) {
             String _name = new String(ch, start, length);
-        //    System.out.println("Name is : " + _name);
             customers.setName(_name);
             name = false;
         }
         if (surname) {
             String _Surname = new String(ch, start, length);
-        //    System.out.println("Surname is : " + _Surname);
             customers.setSurname(_Surname);
             surname = false;
         } if (age) {
             String _age = new String(ch, start, length);
-         //   System.out.println("Age is : " + _age);
             customers.setAge(Integer.valueOf(_age));
             age = false;
         }
@@ -99,7 +96,6 @@ public class ParserXml extends DefaultHandler2 {
 //        }
         if (phone) {
             String _phone = new String(ch, start, length);
-        //    System.out.println("Phone is : " + _phone);
             Contacts contacts = new Contacts();
             contacts.setContact(_phone);
             contacts.setTypeContact(TypeContact.PHONE);
@@ -107,7 +103,6 @@ public class ParserXml extends DefaultHandler2 {
             phone = false;
         } if (email) {
             String _email = new String(ch, start, length);
-        //    System.out.println("e-mail is : " + _email);
             Contacts contacts = new Contacts();
             contacts.setContact(_email);
             contacts.setTypeContact(TypeContact.EMAIL);
@@ -124,7 +119,6 @@ public class ParserXml extends DefaultHandler2 {
 //        }
         if (jabber) {
             String _jabber = new String(ch, start, length);
-       //     System.out.println("jabber is : " + _jabber);
             Contacts contacts = new Contacts();
             contacts.setContact(_jabber);
             contacts.setTypeContact(TypeContact.JABBER);

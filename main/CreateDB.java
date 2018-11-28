@@ -55,6 +55,5 @@ public class CreateDB extends ConnectDB {
             e.printStackTrace();
         }
     }
-
 }
 

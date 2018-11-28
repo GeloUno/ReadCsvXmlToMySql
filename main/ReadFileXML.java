@@ -22,11 +22,6 @@ public class ReadFileXML extends ReadFile {
         this.removeHeadXML = removeHeadXML;
     }
 
-//    @Override
-//    String ReadOneObject() {
-//        return null;
-//    }
-
     @Override
     public void ReadAllObject() {
         DefaultHandler handler = new ParserXml();
@@ -44,15 +39,12 @@ public class ReadFileXML extends ReadFile {
 
                     xmlBodyOne += readLine(bRead);
                 } while (line.indexOf("/person") == -1);
-             //   System.out.println(xmlBodyOne);
-            //    System.out.println(xmlBodyOne.length());
                 /**
                  * stop parsing after load last tag
                  */
                 if(xmlBodyOne.indexOf("</persons>")!=0) {
                     parser.parse(new InputSource(new StringReader(xmlBodyOne)), handler);
                 }
-
                     xmlBodyOne = "";
 
             } while (line.indexOf("/persons") == -1);

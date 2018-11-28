@@ -18,7 +18,6 @@ public class ReadFileCSV extends ReadFile {
                 if (csvBodyOne != null) {
                     if (csvBodyOne.length() > 0) {
                         parserCsv = new ParserCsv();
-                   //     System.out.println(csvBodyOne);
                         parserCsv.parser(csvBodyOne);
                     }
                 }

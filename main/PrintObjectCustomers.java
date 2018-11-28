@@ -4,8 +4,6 @@ import java.util.List;
 
 public class PrintObjectCustomers {
     private List<Contacts> contactsList;
-    private TypeContact TypeContact;
-    private String Contact;
 
     void print(Customers c) {
         System.out.println("START PRINT FROM OBJECT");
@@ -17,10 +15,9 @@ public class PrintObjectCustomers {
             System.out.println(l.getTypeContact());
             System.out.println(l.getContact());
         }
-//        System.out.println(c.getContacts());
-//        System.out.println(c.);
 
         System.out.println("STOP PRINT FROM OBJECT");
+
         ConnectDB insertDB = new InsertDB();
         insertDB.connecting(c);
     }

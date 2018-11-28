@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 abstract public class ReadFile {
-  //  String OneObjectPerson;
+
     String line;
     BufferedReader bRead = null;
     protected String fileName;
@@ -13,7 +13,6 @@ abstract public class ReadFile {
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
- //   Customers customersl;
 
     abstract void ReadAllObject();
 
