@@ -2,23 +2,16 @@ package main;
 
 import java.sql.*;
 
-public class CreateDB {
+public class CreateDB extends ConnectDB {
 
-    //JDBC driver name & database URL
+    //ConnectDB driver name & database URL
 
     // fix problems witch time zone in local host
     static final String DB_URL_CREATE_BD = "jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
-    // DB credential
-    static final String USER = "root";
-    static final String PASS = "";
-
     public void connecting() {
-        Connection connection = null;
-        Statement statement = null;
-        int resultSet;
-        int id;
-        String query;
+              int resultSet;
+
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Connecting ....");
@@ -37,10 +30,6 @@ public class CreateDB {
                     ", `surname` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL " +
                     ", `age` INT(2) NOT NULL " +
                     ", PRIMARY KEY (`id`)) ENGINE = InnoDB");
-            resultSet = statement.executeUpdate(query);
-
-
-            query = ("CREATE DATABASE IF NOT EXISTS contacts");
             resultSet = statement.executeUpdate(query);
 
 

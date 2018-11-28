@@ -1,6 +1,7 @@
 package main;
 
 public class ReadXmlCsv {
+
     public static void main(String[] args) {
 //        BufferedWriter bWrite = null;
 //        BufferedReader bRead = null;
@@ -17,7 +18,8 @@ public class ReadXmlCsv {
 //        {
 //            System.out.printf(ex+" ");
 //        }
-
+        ConnectDB createDB = new CreateDB();
+        createDB.connecting();
 
         CheckXml checkXml = new CheckXml();
         checkXml.readFirstLine(fileName);

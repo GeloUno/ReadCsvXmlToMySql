@@ -21,7 +21,7 @@ public class PrintObjectCustomers {
 //        System.out.println(c.);
 
         System.out.println("STOP PRINT FROM OBJECT");
-        ConnectDB connectDB = new ConnectDB();
-        connectDB.connecting();
+        InsertDB insertDB = new InsertDB();
+        insertDB.connecting();
     }
 }
