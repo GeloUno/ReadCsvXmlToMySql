@@ -4,11 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 abstract public class ReadFile {
-    String OneObjectPerson;
+  //  String OneObjectPerson;
     String line;
-    Customers customersl;
+    BufferedReader bRead = null;
+    protected String fileName;
 
- //   abstract String ReadOneObject();
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+ //   Customers customersl;
 
     abstract void ReadAllObject();
 

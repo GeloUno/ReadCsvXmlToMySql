@@ -14,8 +14,6 @@ import java.io.StringReader;
 
 public class ReadFileXML extends ReadFile {
 
-    BufferedReader bRead = null;
-    String fileName = "dane-osoby.txt";
     String xmlBodyOne = "";
 
     private boolean removeHeadXML;
