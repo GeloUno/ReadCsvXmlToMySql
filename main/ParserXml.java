@@ -17,13 +17,14 @@ public class ParserXml extends DefaultHandler2 {
     boolean jabber = false;
     Customers customers;
  //   Contacts contacts;
-    List<Contacts> contactsList = new ArrayList<Contacts>();
+    List<Contacts> contactsList;
 
 
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
         customers = new Customers();
+        contactsList = new ArrayList<Contacts>();
 //        contacts = new Contacts();
     }
 
@@ -33,6 +34,7 @@ public class ParserXml extends DefaultHandler2 {
         customers.setContacts(contactsList);
         PrintObjectCustomers p = new PrintObjectCustomers();
         p.print(customers);
+
         System.out.println("END PARSING");
     }
 

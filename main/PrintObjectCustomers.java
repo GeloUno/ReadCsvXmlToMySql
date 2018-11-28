@@ -19,10 +19,7 @@ public class PrintObjectCustomers {
         }
 //        System.out.println(c.getContacts());
 //        System.out.println(c.);
-//        System.out.println(c.);
-//        System.out.println(c.);
-//        System.out.println(c.);
-//        System.out.println(c.);
+
         System.out.println("STOP PRINT FROM OBJECT");
     }
 }
