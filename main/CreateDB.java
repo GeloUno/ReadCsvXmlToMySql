@@ -7,7 +7,7 @@ public class CreateDB extends ConnectDB {
     //ConnectDB driver name & database URL
 
     // fix problems witch time zone in local host
-    static final String DB_URL_CREATE_BD = "jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    static final String DB_URL = "jdbc:mysql://localhost/?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     @Override
     public void connecting(Customers customers) {
@@ -21,7 +21,7 @@ public class CreateDB extends ConnectDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Connecting ....");
-            connection = DriverManager.getConnection(DB_URL_CREATE_BD, USER, PASS);
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
 
             System.out.println("Creating DB ...");
             statement = connection.createStatement();
