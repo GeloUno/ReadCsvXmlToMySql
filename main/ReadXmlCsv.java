@@ -4,7 +4,7 @@ public class ReadXmlCsv {
 
     public static void main(String[] args) {
 
-        String fileName = "dane-osoby.txt";
+        String fileName = "2dane-osoby.txt";
 
      ConnectDB createDB = new CreateDB();
         createDB.connecting();

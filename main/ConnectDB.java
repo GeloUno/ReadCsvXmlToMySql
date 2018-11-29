@@ -7,6 +7,7 @@ abstract public class ConnectDB {
 
     static final String USER ="root";
     static final  String PASS ="";
+    static final String DB_URL = "jdbc:mysql://localhost/customersDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     Connection connection = null;
     Statement statement = null;

@@ -11,7 +11,6 @@ public class InsertDB extends ConnectDB {
     /**
      * ConnectDB driver URL
      */
-    static final String DB_URL = "jdbc:mysql://localhost/customersDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     @Override
     public void connecting() {
